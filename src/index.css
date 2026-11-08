@@ -2,8 +2,88 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  min-width: 320px;
+  background-color: #F3EEE3;
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Sembunyikan scrollbar untuk Chrome, Safari, dan Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Sembunyikan scrollbar untuk IE, Edge, dan Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
-  background-color: #F3EEE3; 
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-color: #F3EEE3;
   color: #1A1A1A;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scrollbar-gutter: stable;
+}
+
+#root {
+  min-height: 100vh;
+  width: 100%;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid rgba(46, 111, 64, 0.35);
+  outline-offset: 2px;
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 380px) {
+  .bottom-nav > div.relative {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .bottom-nav button {
+    min-width: 0;
+  }
+
+  .bottom-nav svg {
+    width: 21px;
+    height: 21px;
+  }
 }

@@ -8,7 +8,7 @@ export default {
     extend: {
       colors: {
         loopwear: {
-          green: "#D9714B",      
+          green: "#2E6F40",
           lightGreen: "#C4ECCF", 
           orange: "#D9714B",     
           cream: "#F3EEE3",     
