@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Home, Compass, Shirt, Users, RefreshCw, X, ChevronRight } from 'lucide-react';
 import clsx from 'clsx';

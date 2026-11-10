@@ -1,16 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
-  Bell,
   Heart,
   User,
   ChevronRight,
-  Home,
-  Compass,
-  Shirt,
-  Users,
-  Search,
-  RefreshCw,
   ArrowRight
 } from "lucide-react";
 import { Infinity as InfinityIcon } from "lucide-react";

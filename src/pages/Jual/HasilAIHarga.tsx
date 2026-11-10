@@ -76,7 +76,7 @@ const HasilAIHarga: React.FC = () => {
         {/* Image Card AI Lens */}
         <div className="relative w-full rounded-[24px] overflow-hidden bg-gray-200 aspect-[4/4.5] shadow-sm mb-5">
           <img 
-            src="https://images.unsplash.com/photo-1434389678278-be43e4ff6482?auto=format&fit=crop&w=600&q=80" 
+            src="https://images.unsplash.com/photo-1598033129183-c4f50c736f10?auto=format&fit=crop&w=600&q=80"
             alt="Pakaian Terdeteksi" 
             className="w-full h-full object-cover"
           />

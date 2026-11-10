@@ -1,4 +1,3 @@
-import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   ArrowLeft,
@@ -8,7 +7,6 @@ import {
   CheckCircle2,
   ChevronLeft,
   ChevronRight,
-  Search,
 } from "lucide-react";
 import { dummyKatalog, formatRupiah } from "../../data/dummyKatalog";
 

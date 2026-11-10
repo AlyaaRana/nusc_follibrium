@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 
@@ -6,8 +6,13 @@ export default function PeriksaHasilAI() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Membaca foto dari state kamera jika ada
-  const capturedImage = location.state?.capturedImage || null;
+  const fallbackImage =
+    'https://images.unsplash.com/photo-1598033129183-c4f50c736f10?auto=format&fit=crop&w=600&q=80';
+  const capturedImage = location.state?.capturedImage;
+  const imageSrc =
+    typeof capturedImage === 'string' && capturedImage.length > 0
+      ? capturedImage
+      : fallbackImage;
 
   // --- State Interaktif ---
   const [kategori, setKategori] = useState('Kemeja Lengan Panjang');
@@ -64,9 +69,11 @@ export default function PeriksaHasilAI() {
       <div className="px-6 flex-1 space-y-4">
         {/* Image Overview Card */}
         <div className="bg-[#e4d8c6] rounded-3xl h-48 relative overflow-hidden shadow-sm border border-loopwear-grey/30 flex items-center justify-center">
-          {capturedImage ? (
-            <img src={capturedImage} alt="Foto Pakaian" className="w-full h-full object-cover" />
-          ) : null}
+          <img
+            src={imageSrc}
+            alt="Foto pakaian yang sedang diperiksa"
+            className="w-full h-full object-cover"
+          />
 
           {/* AI Tags on Image */}
           <div className="absolute top-3 left-3 bg-[#2E6F40] text-white px-2 py-1 rounded-full text-[10px] font-bold flex items-center gap-1">

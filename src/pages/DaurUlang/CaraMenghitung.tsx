@@ -8,7 +8,6 @@ import {
   Recycle, 
   ExternalLink, 
   CheckCircle2, 
-  ArrowRight,
   FlaskConical,
   Scale,
   Calculator

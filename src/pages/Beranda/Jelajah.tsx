@@ -48,7 +48,7 @@ export default function Jelajah() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F3EEE3] font-sans pb-24 max-w-md mx-auto shadow-xl">
+    <div className="min-h-screen bg-[#F3EEE3] font-sans pb-10 max-w-md mx-auto">
       <div className="px-6 pt-5">
         <div className="flex justify-between items-center mb-6">
           <div>
@@ -139,7 +139,7 @@ export default function Jelajah() {
         </div>
 
         {products.length > 0 ? (
-          <div className="grid grid-cols-2 gap-4 pb-10">
+          <div className="grid grid-cols-2 gap-4 pb-6">
             {products.map((product) => (
               <article
                 key={product.id}
@@ -152,7 +152,7 @@ export default function Jelajah() {
                     navigate(`/jelajah/${product.tipe}/${product.id}`);
                   }
                 }}
-                className="bg-white rounded-3xl p-2 pb-4 shadow-sm relative text-left cursor-pointer"
+                className="bg-white rounded-3xl p-2 pb-4 relative text-left cursor-pointer"
               >
                 <span className="absolute top-4 left-4 z-10 bg-[#CDF3D8] text-[#1B4D3E] text-[9px] font-bold px-2.5 py-1 rounded-full shadow-sm">
                   {product.tipe === "beli" ? "BELI" : "SEWA"}

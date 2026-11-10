@@ -65,7 +65,7 @@ const SiapTayang: React.FC = () => {
           {/* Area Gambar dengan Badge */}
           <div className="relative w-full aspect-square rounded-[16px] overflow-hidden bg-gray-200 mb-4">
             <img 
-              src="https://images.unsplash.com/photo-1434389678278-be43e4ff6482?auto=format&fit=crop&w=600&q=80" 
+              src="https://images.unsplash.com/photo-1598033129183-c4f50c736f10?auto=format&fit=crop&w=600&q=80"
               alt="Kemeja Linen Terracotta" 
               className="w-full h-full object-cover"
             />

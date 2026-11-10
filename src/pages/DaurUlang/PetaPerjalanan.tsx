@@ -113,7 +113,7 @@ const PetaPerjalanan: React.FC = () => {
             {/* LANGKAH 01: Diajukan (Kiri) */}
             <div className="bg-white rounded-[24px] p-4 shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex gap-4 w-full">
               <div className="relative w-[72px] h-[72px] rounded-[16px] bg-gray-200 flex-shrink-0">
-                <img src="https://images.unsplash.com/photo-1434389678278-be43e4ff6482?auto=format&fit=crop&w=200&q=80" alt="Baju Diajukan" className="w-full h-full object-cover rounded-[16px]" />
+                <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=200&q=80" alt="Baju Diajukan" className="w-full h-full object-cover rounded-[16px]" />
                 <div className="absolute -top-1.5 -right-1.5 bg-[#203f35] text-white w-5 h-5 rounded-full flex items-center justify-center border-2 border-white">
                   <Check size={10} strokeWidth={4} />
                 </div>

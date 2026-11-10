@@ -7,7 +7,7 @@ export const dummyPengajuan = {
   kondisiFisik: "Tidak layak jual / sewa",
   rekomendasi: "Daur Ulang Tekstil Baru",
   estimasiPoin: 25,
-  imageUrl: "https://images.unsplash.com/photo-1434389678278-be43e4ff6482?auto=format&fit=crop&w=600&q=80"
+  imageUrl: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=600&q=80"
 };
 
 export const dummyTitikKumpul = [

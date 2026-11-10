@@ -85,7 +85,7 @@ export const dummyPakaian: ItemPakaian[] = [
     mutu: 'Prima', 
     harga: 'Rp95.000/3 hari', 
     status: 'Sewakan - Disewa', 
-    img: 'https://images.unsplash.com/photo-1583391733956-6c78276477e2?auto=format&fit=crop&w=600&q=80',
+    img: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=600&q=80',
     frekuensiPakai: 2,
     rekomendasiAI: 'Sewakan',
     alasanAI: 'Permintaan sewa tinggi untuk acara wisuda dan pernikahan.'

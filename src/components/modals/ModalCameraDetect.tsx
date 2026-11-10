@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function ModalCameraDetect() {
@@ -16,10 +16,6 @@ export default function ModalCameraDetect() {
     async function startCamera() {
       try {
         setCameraError(null);
-        if (stream) {
-          stream.getTracks().forEach((track) => track.stop());
-        }
-
         const mediaStream = await navigator.mediaDevices.getUserMedia({
           video: { facingMode: facingMode, width: { ideal: 1280 }, height: { ideal: 720 } },
           audio: false,
@@ -31,7 +27,7 @@ export default function ModalCameraDetect() {
         if (videoRef.current) {
           videoRef.current.srcObject = mediaStream;
         }
-      } catch (err: any) {
+      } catch (err) {
         console.error('Kamera gagal diakses:', err);
         setCameraError('Kamera tidak dapat diakses atau izin ditolak oleh browser.');
       }

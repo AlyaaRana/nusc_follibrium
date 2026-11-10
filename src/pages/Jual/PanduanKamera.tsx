@@ -8,7 +8,7 @@ const dummyPanduanKamera = [
   { id: "foto-2", label: "Belakang", imageUrl: "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?auto=format&fit=crop&w=500&q=80" },
   { id: "foto-3", label: "Label", imageUrl: "https://images.unsplash.com/photo-1520006403909-838d6b92c22e?auto=format&fit=crop&w=500&q=80" },
   { id: "foto-4", label: "Detail", imageUrl: "https://images.unsplash.com/photo-1603252109303-2751441dd157?auto=format&fit=crop&w=500&q=80" },
-  { id: "foto-5", label: "Cacat", imageUrl: "https://images.unsplash.com/photo-1584024443958-693db158c894?auto=format&fit=crop&w=500&q=80" },
+  { id: "foto-5", label: "Cacat", imageUrl: "https://images.unsplash.com/photo-1603252109303-2751441dd157?auto=format&fit=crop&w=500&q=80" },
 ];
 
 const PanduanKamera: React.FC = () => {

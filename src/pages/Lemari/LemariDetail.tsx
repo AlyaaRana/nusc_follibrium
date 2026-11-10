@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import { dummyPakaian } from '../../data/dummyLemari';
@@ -235,7 +234,7 @@ export default function LemariDetail() {
             <div className="bg-white rounded-2xl p-2 shadow-sm border border-black/[0.04]">
               <div className="relative h-28 rounded-xl overflow-hidden mb-2 bg-[#EFE8DC]">
                 <img 
-                  src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=400&q=80" 
+                  src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=400&q=80"
                   alt="Blazer Warm Clay" 
                   className="w-full h-full object-cover"
                 />
@@ -251,7 +250,7 @@ export default function LemariDetail() {
             <div className="bg-white rounded-2xl p-2 shadow-sm border border-black/[0.04]">
               <div className="relative h-28 rounded-xl overflow-hidden mb-2 bg-[#EFE8DC]">
                 <img 
-                  src="https://images.unsplash.com/photo-1583391733956-6c78276477e2?auto=format&fit=crop&w=400&q=80" 
+                  src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=400&q=80" 
                   alt="Kulot Satin" 
                   className="w-full h-full object-cover"
                 />
