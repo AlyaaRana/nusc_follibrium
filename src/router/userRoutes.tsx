@@ -33,6 +33,13 @@ import TitikKumpul from "../pages/DaurUlang/TitikKumpul";
 import PetaPerjalanan from "../pages/DaurUlang/PetaPerjalanan";
 import CaraMenghitung from "../pages/DaurUlang/CaraMenghitung";
 
+// --- Modul Sewa (Baru Ditambahkan) ---
+import FotoKondisiAwal from "../pages/Sewa/FotoKondisiAwal";
+import PilihBusana from "../pages/Sewa/PilihBusana";
+import TarifDeposit from "../pages/Sewa/TarifDeposit";
+import KalenderSewa from "../pages/Sewa/KalenderSewa";
+import StatusPendapatan from "../pages/Sewa/StatusPendapatan";
+
 export default function UserRoutes() {
   return (
     <Routes>
@@ -49,6 +56,13 @@ export default function UserRoutes() {
       <Route path="/daur-ulang/titik-kumpul" element={<TitikKumpul />} />
       <Route path="/daur-ulang/peta-perjalanan" element={<PetaPerjalanan />} />
       <Route path="/daur-ulang/cara-menghitung" element={<CaraMenghitung />} />
+
+      {/* Modul Sewa */}
+      <Route path="/sewa/foto-kondisi" element={<FotoKondisiAwal />} />
+      <Route path="/sewa/pilih-busana" element={<PilihBusana />} />
+      <Route path="/sewa/tarif-deposit" element={<TarifDeposit />} />
+      <Route path="/sewa/kalender" element={<KalenderSewa />} />
+      <Route path="/sewa/status" element={<StatusPendapatan />} />
 
       {/* Modal & Sub-layar Lemari */}
       <Route path="/lemari/tambah" element={<ModalCameraDetect />} />
