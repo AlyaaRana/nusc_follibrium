@@ -15,16 +15,41 @@ import KoleksiLencana from "../pages/Komunitas/KoleksiLencana";
 import TantanganKomunitas from "../pages/Komunitas/TantanganKomunitas";
 import GaleriGaya from "../pages/Komunitas/GaleriGaya";
 
-// --- Modul Beranda & Jelajah (Disesuaikan dengan folder kamu) ---
+// --- Modul Beranda & Jelajah ---
 import { BerandaUser } from "../pages/Beranda/BerandaUser";
 import Jelajah from "../pages/Beranda/Jelajah";
 import DetailProdukBeli from "../pages/Beranda/DetailProdukBeli";
 import DetailProdukSewa from "../pages/Beranda/DetailProdukSewa";
 
+// --- Modul Jual (Baru Ditambahkan) ---
+import PanduanKamera from "../pages/Jual/PanduanKamera";
+import HasilAIHarga from "../pages/Jual/HasilAIHarga";
+import VerifikasiKurasi from "../pages/Jual/VerifikasiKurasi";
+import SiapTayang from "../pages/Jual/SiapTayang";
+
+// --- Modul Daur Ulang (Baru Ditambahkan) ---
+import PengajuanDaurUlang from "../pages/DaurUlang/PengajuanDaurUlang";
+import TitikKumpul from "../pages/DaurUlang/TitikKumpul";
+import PetaPerjalanan from "../pages/DaurUlang/PetaPerjalanan";
+import CaraMenghitung from "../pages/DaurUlang/CaraMenghitung";
+
 export default function UserRoutes() {
   return (
     <Routes>
       {/* ==================== 1. Rute Tanpa Bottom Nav (Full Screen) ==================== */}
+      
+      {/* Modul Jual */}
+      <Route path="/jual/panduan-kamera" element={<PanduanKamera />} />
+      <Route path="/jual/hasil-ai" element={<HasilAIHarga />} />
+      <Route path="/jual/verifikasi" element={<VerifikasiKurasi />} />
+      <Route path="/jual/siap-tayang" element={<SiapTayang />} />
+
+      {/* Modul Daur Ulang */}
+      <Route path="/daur-ulang/pengajuan" element={<PengajuanDaurUlang />} />
+      <Route path="/daur-ulang/titik-kumpul" element={<TitikKumpul />} />
+      <Route path="/daur-ulang/peta-perjalanan" element={<PetaPerjalanan />} />
+      <Route path="/daur-ulang/cara-menghitung" element={<CaraMenghitung />} />
+
       {/* Modal & Sub-layar Lemari */}
       <Route path="/lemari/tambah" element={<ModalCameraDetect />} />
       <Route path="/lemari/periksa-ai" element={<PeriksaHasilAI />} />
