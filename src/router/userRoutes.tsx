@@ -20,6 +20,7 @@ import { BerandaUser } from "../pages/Beranda/BerandaUser";
 import Jelajah from "../pages/Beranda/Jelajah";
 import DetailProdukBeli from "../pages/Beranda/DetailProdukBeli";
 import DetailProdukSewa from "../pages/Beranda/DetailProdukSewa";
+import Checkout from "../pages/Beranda/Checkout";
 
 // --- Modul Jual (Baru Ditambahkan) ---
 import PanduanKamera from "../pages/Jual/PanduanKamera";
@@ -79,6 +80,7 @@ export default function UserRoutes() {
       {/* Layar Detail Produk Beli & Sewa */}
       <Route path="/jelajah/beli/:id" element={<DetailProdukBeli />} />
       <Route path="/jelajah/sewa/:id" element={<DetailProdukSewa />} />
+      <Route path="/checkout/:mode/:id" element={<Checkout />} />
 
       {/* ==================== 2. Rute Dengan Bottom Nav (MainLayout) ==================== */}
       <Route element={<MainLayout />}>

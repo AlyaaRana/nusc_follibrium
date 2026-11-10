@@ -10,16 +10,13 @@ import {
   Shirt,
   Users,
   Search,
-  SlidersHorizontal,
-  ArrowLeft,
-  Share2,
-  CheckCircle2,
-  ChevronLeft,
+  RefreshCw,
+  ArrowRight
 } from "lucide-react";
+import { Infinity as InfinityIcon } from "lucide-react";
 import hangerIcon from "../../assets/hanger.png";
 import background from "../../assets/background.png";
 
-import { Infinity as InfinityIcon, ArrowRight } from "lucide-react";
 const pilihanKamu = [
   {
     id: 1,
@@ -47,7 +44,6 @@ const pilihanKamu = [
 
 export function BerandaUser() {
   const navigate = useNavigate();
-
   const [favorit, setFavorit] = useState<Record<number, boolean>>({});
 
   const toggleFavorit = (e: React.MouseEvent, id: number) => {
@@ -56,13 +52,16 @@ export function BerandaUser() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F3EEE3] font-sans pb-24 max-w-md mx-auto relative shadow-xl overflow-hidden">
+    // Menghapus shadow-xl agar tidak ada bayangan kotak yang janggal di pinggir/bawah layar
+    // Menambahkan pb-6 sebagai padding bottom tanpa space untuk bottom nav
+    <div className="min-h-screen bg-[#F3EEE3] font-sans pb-6 max-w-md mx-auto relative overflow-hidden">
       <div className="px-6 pt-5 pb-4">
+        {/* Header Profil */}
         <div className="flex justify-between items-center mb-6">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm">
               <div
-                className="w-20 h-20 bg-contain bg-no-repeat bg-right opacity-80"
+                className="w-30 h-30 bg-contain bg-no-repeat bg-right opacity-80"
                 style={{ backgroundImage: `url('${background}')` }}
               ></div>
             </div>
@@ -98,8 +97,9 @@ export function BerandaUser() {
             </p>
           </div>
           <div className="text-right">
+            {/* Mengganti background image dari URL ke lokal (hangerIcon) */}
             <div
-              className="w-20 h-20 bg-contain bg-no-repeat bg-right opacity-80"
+              className="w-16 h-10 bg-contain bg-no-repeat bg-right opacity-80"
               style={{ backgroundImage: `url('${hangerIcon}')` }}
             ></div>
           </div>
@@ -154,11 +154,9 @@ export function BerandaUser() {
 
         {/* Ekosistem Sirkular Visual */}
         <div className="relative mb-8 aspect-[543/425] w-full overflow-hidden rounded-[28px] bg-gradient-to-br from-[#3A7A5C] via-[#2F6A52] to-[#295E49] shadow-lg">
-          {/* Glow: terang kanan atas, hangat kiri bawah */}
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_90%_0%,rgba(255,255,255,0.22),transparent_45%)]" />
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_0%_100%,rgba(140,95,45,0.55),transparent_40%)]" />
 
-          {/* Header */}
           <div className="relative z-20 flex items-center justify-between px-4 pt-4">
             <div className="flex items-center gap-1.5 rounded-full bg-white/20 px-3 py-1.5 text-[10px] font-bold tracking-wide text-white backdrop-blur">
               <InfinityIcon size={13} strokeWidth={2.5} />
@@ -169,11 +167,9 @@ export function BerandaUser() {
             </span>
           </div>
 
-          {/* Orbit (elips putus-putus) */}
           <div className="pointer-events-none absolute left-1/2 top-[54%] h-[62%] w-[88%] -translate-x-1/2 -translate-y-1/2 rounded-[50%] border border-dashed border-white/25" />
           <div className="pointer-events-none absolute left-1/2 top-[54%] h-[42%] w-[58%] -translate-x-1/2 -translate-y-1/2 rounded-[50%] border border-dashed border-white/20" />
 
-          {/* Pusat */}
           <div className="absolute left-1/2 top-[54%] z-10 flex h-[88px] w-[88px] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full bg-white shadow-[0_0_24px_rgba(255,255,255,0.25)]">
             <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#C6EFD3]">
               <InfinityIcon
@@ -187,7 +183,6 @@ export function BerandaUser() {
             </span>
           </div>
 
-          {/* Foto kiri atas */}
           <div className="absolute left-[9%] top-[22%] z-10 h-14 w-14 -rotate-6 rounded-2xl border-[3px] border-white bg-white shadow-lg">
             <img
               src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=200&q=80"
@@ -196,22 +191,18 @@ export function BerandaUser() {
             />
           </div>
 
-          {/* Pill Jual */}
           <div className="absolute left-[34%] top-[17%] z-20 flex items-center gap-1 rounded-full bg-[#9C3F1F] px-2.5 py-1 text-[11px] font-bold text-white shadow-md">
             🏷️ Jual
           </div>
 
-          {/* Sepatu */}
           <span className="absolute right-[15%] top-[25%] z-10 rotate-45 text-base">
             👟
           </span>
 
-          {/* Pill Daur Ulang */}
           <div className="absolute right-[3%] top-[46%] z-20 flex items-center gap-1 rounded-full bg-[#CDF3D8] px-2.5 py-1.5 text-[11px] font-bold text-[#1B3D2E] shadow-md">
             ♻️ Daur Ulang
           </div>
 
-          {/* Foto kanan bawah */}
           <div className="absolute right-[8%] top-[62%] z-10 h-14 w-14 rotate-6 rounded-2xl border-[3px] border-white bg-white shadow-lg">
             <img
               src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=200&q=80"
@@ -220,17 +211,14 @@ export function BerandaUser() {
             />
           </div>
 
-          {/* Tas */}
           <span className="absolute left-[17%] top-[69%] z-10 text-base">
             👜
           </span>
 
-          {/* Pill Sewa */}
           <div className="absolute left-[46%] top-[75%] z-20 flex items-center gap-1 rounded-full bg-white px-2.5 py-1 text-[11px] font-bold text-[#1B3D2E] shadow-md">
             📅 Sewa
           </div>
 
-          {/* Footer */}
           <div className="absolute bottom-4 left-4 z-20 flex items-center gap-1 text-[10px] font-bold text-[#B9E4C6]">
             🌱 Bebas Fast-Fashion
           </div>
@@ -312,8 +300,7 @@ export function BerandaUser() {
           </span>
         </div>
 
-        <div className="bg-white rounded-3xl shadow-sm flex items-stretch overflow-hidden">
-          {/* Tanggal acara */}
+        <div className="bg-white rounded-3xl shadow-sm flex items-stretch overflow-hidden mb-6">
           <div className="w-[104px] shrink-0 bg-[#FDEBE6] flex flex-col items-center justify-center py-4 border-r-2 border-dashed border-[#E9CFC6]">
             <span className="bg-[#9C3F1F] text-white text-[11px] font-bold px-3 py-1 rounded-full">
               Wisuda
@@ -326,7 +313,6 @@ export function BerandaUser() {
             </span>
           </div>
 
-          {/* Detail sewa */}
           <div className="flex-1 flex items-center gap-3 p-3 min-w-0">
             <div className="w-14 h-16 shrink-0 rounded-xl overflow-hidden bg-gray-100">
               <img
@@ -353,6 +339,7 @@ export function BerandaUser() {
           </div>
         </div>
       </div>
+      {/* Menghapus block bottom nav karena ini rute dengan bottom nav (MainLayout) dan tidak akan dirender lagi */}
     </div>
   );
 }

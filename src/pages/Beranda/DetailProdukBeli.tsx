@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   ArrowLeft,
   Share2,
@@ -7,21 +8,43 @@ import {
   CheckCircle2,
   Search,
 } from "lucide-react";
+import { dummyKatalog, formatRupiah } from "../../data/dummyKatalog";
 
 export default function DetailProdukBeli() {
+  const navigate = useNavigate();
+  const { id } = useParams();
+  const product = dummyKatalog.find(
+    (item) => item.id === id && item.tipe === "beli",
+  );
+
+  if (!product) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center gap-4 bg-[#F3EEE3] p-6 text-center">
+        <p className="font-bold text-[#1B4D3E]">Produk tidak ditemukan.</p>
+        <button
+          type="button"
+          onClick={() => navigate("/jelajah")}
+          className="rounded-full bg-[#1B4D3E] px-5 py-2 text-sm font-bold text-white"
+        >
+          Kembali ke Jelajah
+        </button>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-[#F3EEE3] font-sans pb-28 max-w-md mx-auto relative shadow-xl">
       {/* Hero Image */}
       <div className="w-full h-96 relative">
         <img
-          src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80"
-          alt="Detail Baju"
+          src={product.gambar}
+          alt={product.nama}
           className="w-full h-full object-cover rounded-b-[40px]"
         />
 
         {/* Top Floating Nav */}
         <div className="absolute top-12 left-6 right-6 flex justify-between items-center">
-          <button className="w-10 h-10 bg-white/90 backdrop-blur rounded-full flex items-center justify-center shadow-sm text-[#1B4D3E]">
+          <button type="button" onClick={() => navigate(-1)} className="w-10 h-10 bg-white/90 backdrop-blur rounded-full flex items-center justify-center shadow-sm text-[#1B4D3E]">
             <ArrowLeft size={20} />
           </button>
           <div className="flex gap-2">
@@ -61,15 +84,15 @@ export default function DetailProdukBeli() {
               KOLEKSI EARTHY MINIMALIS
             </span>
             <span className="bg-[#E2DBCF] text-[#1B4D3E] text-[11px] font-extrabold px-3 py-1 rounded-full">
-              SIZE M
+              SIZE {product.ukuran}
             </span>
           </div>
           <h1 className="text-2xl font-extrabold text-[#1B4D3E] leading-tight mb-3">
-            Kemeja Linen Katun Natural
+            {product.nama}
           </h1>
           <div className="flex items-baseline gap-3">
             <span className="text-3xl font-extrabold text-[#1B4D3E]">
-              Rp135.000
+              {formatRupiah(product.harga)}
             </span>
             <span className="text-sm text-gray-400 line-through">
               Rp329.000
@@ -173,13 +196,17 @@ export default function DetailProdukBeli() {
             TOTAL BELANJA
           </p>
           <p className="text-xl font-extrabold text-[#1B4D3E] leading-none mb-1">
-            Rp135.000
+            {formatRupiah(product.harga)}
           </p>
           <p className="text-[8px] text-[#2E6F40] font-medium">
             Bebas pengembalian 24 jam
           </p>
         </div>
-        <button className="bg-[#D9714B] text-white font-bold text-sm px-6 py-3 rounded-full flex items-center gap-2 shadow-[0_4px_15px_rgba(217,113,75,0.3)]">
+        <button
+          type="button"
+          onClick={() => navigate(`/checkout/beli/${product.id}`)}
+          className="bg-[#D9714B] text-white font-bold text-sm px-6 py-3 rounded-full flex items-center gap-2 shadow-[0_4px_15px_rgba(217,113,75,0.3)]"
+        >
           Beli Sekarang ➔
         </button>
       </div>

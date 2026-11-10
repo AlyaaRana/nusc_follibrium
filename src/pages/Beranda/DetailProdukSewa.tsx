@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   ArrowLeft,
   Share2,
@@ -9,21 +10,46 @@ import {
   ChevronRight,
   Search,
 } from "lucide-react";
+import { dummyKatalog, formatRupiah } from "../../data/dummyKatalog";
 
 export default function DetailProdukSewa() {
+  const navigate = useNavigate();
+  const { id } = useParams();
+  const product = dummyKatalog.find(
+    (item) => item.id === id && item.tipe === "sewa",
+  );
+
+  if (!product) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center gap-4 bg-[#F3EEE3] p-6 text-center">
+        <p className="font-bold text-[#1B4D3E]">Produk tidak ditemukan.</p>
+        <button
+          type="button"
+          onClick={() => navigate("/jelajah")}
+          className="rounded-full bg-[#1B4D3E] px-5 py-2 text-sm font-bold text-white"
+        >
+          Kembali ke Jelajah
+        </button>
+      </div>
+    );
+  }
+
+  const deposit = product.deposit ?? 0;
+  const total = product.harga + deposit;
+
   return (
     <div className="min-h-screen bg-[#F3EEE3] font-sans pb-28 max-w-md mx-auto relative shadow-xl">
       {/* Hero Image */}
       <div className="w-full h-96 relative">
         <img
-          src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=800&q=80"
-          alt="Detail Kebaya"
+          src={product.gambar}
+          alt={product.nama}
           className="w-full h-full object-cover rounded-b-[40px]"
         />
 
         {/* Top Floating Nav */}
         <div className="absolute top-12 left-6 right-6 flex justify-between items-center">
-          <button className="w-10 h-10 bg-white/90 backdrop-blur rounded-full flex items-center justify-center shadow-sm text-[#1B4D3E]">
+          <button type="button" onClick={() => navigate(-1)} className="w-10 h-10 bg-white/90 backdrop-blur rounded-full flex items-center justify-center shadow-sm text-[#1B4D3E]">
             <ArrowLeft size={20} />
           </button>
           <div className="flex gap-2">
@@ -66,7 +92,7 @@ export default function DetailProdukSewa() {
             </span>
           </div>
           <h1 className="text-2xl font-extrabold text-[#1B4D3E] leading-tight mb-2">
-            Kebaya Modern Hijau Salvia
+            {product.nama}
           </h1>
           <p className="text-[11px] text-gray-500 mb-4">
             Material Brokat Premium Sutra & Furing Adem
@@ -79,10 +105,10 @@ export default function DetailProdukSewa() {
               </p>
               <div className="flex items-baseline gap-2">
                 <span className="text-3xl font-extrabold text-[#1B4D3E]">
-                  Rp95.000
+                  {formatRupiah(product.harga)}
                 </span>
                 <span className="text-[9px] text-[#D9714B] font-bold bg-[#FFF0E8] px-2 py-0.5 rounded-full">
-                  / 3 hari sewa
+                  / {product.rentalDays} hari sewa
                 </span>
               </div>
             </div>
@@ -104,7 +130,7 @@ export default function DetailProdukSewa() {
           </div>
           <div>
             <p className="text-[12px] font-bold text-[#1B4D3E]">
-              Deposit Aman: Rp150.000
+              Deposit Aman: {formatRupiah(deposit)}
             </p>
             <p className="text-[10px] text-gray-500 mt-1 leading-snug">
               100% kembali otomatis pasca inspeksi busana.
@@ -268,13 +294,17 @@ export default function DetailProdukSewa() {
             TOTAL PEMBAYARAN
           </p>
           <p className="text-xl font-extrabold text-[#1B4D3E] leading-none mb-1">
-            Rp245.000
+            {formatRupiah(total)}
           </p>
           <p className="text-[8px] text-gray-400 font-medium">
-            Termasuk Deposit Rp150.000
+            Termasuk Deposit {formatRupiah(deposit)}
           </p>
         </div>
-        <button className="bg-[#D9714B] text-white font-bold text-sm px-6 py-3 rounded-full flex items-center gap-2 shadow-[0_4px_15px_rgba(217,113,75,0.3)]">
+        <button
+          type="button"
+          onClick={() => navigate(`/checkout/sewa/${product.id}`)}
+          className="bg-[#D9714B] text-white font-bold text-sm px-6 py-3 rounded-full flex items-center gap-2 shadow-[0_4px_15px_rgba(217,113,75,0.3)]"
+        >
           Sewa Sekarang ➔
         </button>
       </div>
