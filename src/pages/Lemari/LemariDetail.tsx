@@ -9,11 +9,31 @@ export default function LemariDetail() {
   // Mencari item pakaian berdasarkan ID dari URL, fallback ke item 1 jika tidak ditemukan
   const item = dummyPakaian.find((p) => p.id === Number(id)) || dummyPakaian[0];
 
+  // Handler navigasi dinamis berdasarkan pilihan Loop Decision Hub
+  const handleDecisionClick = (opsi: string) => {
+    switch (opsi) {
+      case 'Simpan':
+        // Tetap di halaman detail
+        break;
+      case 'Jual':
+        navigate(`/jual/hasil-ai?id=${item.id}`);
+        break;
+      case 'Sewakan':
+        navigate(`/sewa/tarif-deposit?id=${item.id}`);
+        break;
+      case 'Daur Ulang':
+        navigate(`/daur-ulang/pengajuan?id=${item.id}`);
+        break;
+      default:
+        break;
+    }
+  };
+
   return (
     <div className="min-h-screen bg-[#F3EEE3] flex flex-col font-jakarta pb-24">
       {/* Header */}
       <div className="pt-5 px-6 pb-4 flex items-center justify-between">
-        <button onClick={() => navigate(-1)} className="text-loopwear-dark">
+        <button onClick={() => navigate(-1)} className="text-loopwear-dark cursor-pointer">
           <ArrowLeft size={24} />
         </button>
         <h1 className="text-[16px] font-bold text-loopwear-dark">Detail Pakaian</h1>
@@ -49,10 +69,10 @@ export default function LemariDetail() {
             <span className="w-2 h-2 bg-[#2E6F40] rounded-full"></span> Tersedia di Lemari
           </div>
           <div className="absolute top-4 right-4 flex gap-2">
-            <button className="w-8 h-8 bg-white/90 rounded-full flex items-center justify-center text-[#D9714B] shadow-sm">
+            <button className="w-8 h-8 bg-white/90 rounded-full flex items-center justify-center text-[#D9714B] shadow-sm cursor-pointer">
               ❤️
             </button>
-            <button className="w-8 h-8 bg-white/90 rounded-full flex items-center justify-center text-loopwear-dark shadow-sm">
+            <button className="w-8 h-8 bg-white/90 rounded-full flex items-center justify-center text-loopwear-dark shadow-sm cursor-pointer">
               🔗
             </button>
           </div>
@@ -146,7 +166,7 @@ export default function LemariDetail() {
           </div>
         </div>
 
-        {/* LOOP DECISION HUB */}
+        {/* LOOP DECISION HUB (Interaktif) */}
         <div className="bg-[#2E6F40] rounded-3xl p-5 shadow-lg relative overflow-hidden">
           <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full blur-xl"></div>
 
@@ -171,11 +191,13 @@ export default function LemariDetail() {
               const isSelected = item.rekomendasiAI === opsi;
               return (
                 <button
+                  type="button"
                   key={opsi}
-                  className={`rounded-2xl p-3 flex flex-col items-center justify-center transition-all ${
+                  onClick={() => handleDecisionClick(opsi)}
+                  className={`rounded-2xl p-3 flex flex-col items-center justify-center transition-all cursor-pointer active:scale-95 ${
                     isSelected
                       ? 'bg-white border-2 border-white shadow-md transform scale-105'
-                      : 'bg-[#1B4D3E] border border-white/10 text-white/70 hover:bg-white/10'
+                      : 'bg-[#1B4D3E] border border-white/10 text-white/70 hover:bg-white/10 hover:text-white'
                   }`}
                 >
                   <span className={`text-xl mb-1 ${isSelected ? 'text-[#2E6F40]' : ''}`}>
@@ -202,19 +224,18 @@ export default function LemariDetail() {
           </div>
         </div>
 
-        {/* --- TAMBAHAN BAGIAN: Inspirasi Padu Padan (Mirip Referensi Gambar) --- */}
+        {/* Inspirasi Padu Padan */}
         <div className="pt-2">
           <div className="flex justify-between items-center mb-3">
             <h3 className="font-extrabold text-[15px] text-[#1A1A1A] flex items-center gap-1.5">
               <span>🪞</span> Inspirasi Padu Padan
             </h3>
-            <button className="text-[12px] font-bold text-[#2E6F40] hover:underline">
+            <button className="text-[12px] font-bold text-[#2E6F40] hover:underline cursor-pointer">
               Lihat Semua &gt;
             </button>
           </div>
 
           <div className="grid grid-cols-3 gap-3">
-            {/* OOTD Item 1 */}
             <div className="bg-white rounded-2xl p-2 shadow-sm border border-black/[0.04]">
               <div className="relative h-28 rounded-xl overflow-hidden mb-2 bg-[#EFE8DC]">
                 <img 
@@ -230,11 +251,10 @@ export default function LemariDetail() {
               <p className="text-[10px] text-[#8C9387]">Bawahan</p>
             </div>
 
-            {/* OOTD Item 2 */}
             <div className="bg-white rounded-2xl p-2 shadow-sm border border-black/[0.04]">
               <div className="relative h-28 rounded-xl overflow-hidden mb-2 bg-[#EFE8DC]">
                 <img 
-                  src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=400&q=80"
+                  src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=400&q=80" 
                   alt="Blazer Warm Clay" 
                   className="w-full h-full object-cover"
                 />
@@ -246,11 +266,10 @@ export default function LemariDetail() {
               <p className="text-[10px] text-[#8C9387]">Outerwear</p>
             </div>
 
-            {/* OOTD Item 3 */}
             <div className="bg-white rounded-2xl p-2 shadow-sm border border-black/[0.04]">
               <div className="relative h-28 rounded-xl overflow-hidden mb-2 bg-[#EFE8DC]">
                 <img 
-                  src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=400&q=80" 
+                  src="https://images.unsplash.com/photo-1583391733956-6c78276477e2?auto=format&fit=crop&w=400&q=80" 
                   alt="Kulot Satin" 
                   className="w-full h-full object-cover"
                 />

@@ -1,22 +1,37 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 
 export default function TantanganKomunitas() {
   const navigate = useNavigate();
-  // Generate 30 days of check-ins (18 completed)
-  const days = Array.from({ length: 30 }, (_, i) => i < 18);
+  const [checkIns, setCheckIns] = useState(18);
+  const [joinedChallenges, setJoinedChallenges] = useState<string[]>([]);
+  const days = Array.from({ length: 30 }, (_, i) => i < checkIns);
+
+  const toggleChallenge = (challenge: string) => {
+    setJoinedChallenges((current) =>
+      current.includes(challenge)
+        ? current.filter((joined) => joined !== challenge)
+        : [...current, challenge],
+    );
+  };
 
   return (
-    <div className="min-h-screen bg-[#F3EEE3] font-jakarta pb-24">
+    <div className="bg-[#F3EEE3] font-jakarta pb-6">
       <div className="pt-5 px-6 pb-4 flex items-center gap-3">
-        <button onClick={() => navigate(-1)} className="text-[#1B4D3E]"><ArrowLeft size={24} /></button>
+        <button type="button" onClick={() => navigate(-1)} aria-label="Kembali" className="text-[#1B4D3E]"><ArrowLeft size={24} /></button>
         <h1 className="text-[18px] font-bold text-[#1B4D3E]">Tantangan</h1>
       </div>
 
       <div className="px-6 space-y-6">
         {/* Main Challenge Card */}
         <div className="bg-white rounded-[32px] overflow-hidden shadow-sm border border-loopwear-grey/20">
-          <div className="h-48 bg-[#a89887] relative flex flex-col justify-end p-5">
+          <div className="h-48 relative flex flex-col justify-end p-5">
+             <img
+               src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1000&q=80"
+               alt="Teman-teman memilih pakaian bersama"
+               className="absolute inset-0 h-full w-full object-cover"
+             />
              <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-[#1B4D3E] px-3 py-1.5 rounded-full text-[10px] font-extrabold flex items-center gap-1">
                 🍃 GAYA HIDUP
              </div>
@@ -35,7 +50,7 @@ export default function TantanganKomunitas() {
                 <span className="text-[12px] font-bold text-loopwear-dark flex items-center gap-1.5">
                   📅 Progres Harian
                 </span>
-                <span className="text-[12px] font-bold text-[#1B4D3E]">18 dari 30 hari (60%)</span>
+                <span className="text-[12px] font-bold text-[#1B4D3E]">{checkIns} dari 30 hari ({Math.round((checkIns / 30) * 100)}%)</span>
              </div>
 
              {/* 30 Days Grid */}
@@ -70,8 +85,14 @@ export default function TantanganKomunitas() {
                 </div>
              </div>
 
-             <button className="w-full bg-[#1B4D3E] text-white font-bold py-4 rounded-full shadow-md flex justify-center items-center gap-2 text-[14px] active:scale-95 transition-transform">
-               🌿 Check-in Hari Ini 🌿 <span className="bg-[#D9714B] text-white px-2 py-0.5 rounded text-[9px] ml-1">🔥 18 Hari</span>
+             <button
+               type="button"
+               onClick={() => setCheckIns((current) => Math.min(current + 1, 30))}
+               disabled={checkIns === 30}
+               className="w-full bg-[#1B4D3E] disabled:bg-[#7a9389] text-white font-bold py-4 rounded-full shadow-md flex justify-center items-center gap-2 text-[14px] active:scale-95 transition-transform"
+             >
+               {checkIns === 30 ? '✅ Tantangan Selesai' : '🌿 Check-in Hari Ini 🌿'}
+               <span className="bg-[#D9714B] text-white px-2 py-0.5 rounded text-[9px] ml-1">🔥 {checkIns} Hari</span>
              </button>
           </div>
         </div>
@@ -88,10 +109,11 @@ export default function TantanganKomunitas() {
 
            <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide">
               <div className="min-w-[160px] bg-white rounded-3xl p-3 shadow-sm border border-loopwear-grey/20">
-                 <div className="h-28 bg-[#8c9c82] rounded-2xl mb-3 relative flex flex-col justify-end p-2 overflow-hidden">
+                 <div className="h-28 rounded-2xl mb-3 relative flex flex-col justify-end p-2 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=600&q=80" alt="Pakaian yang siap ditukar" className="absolute inset-0 h-full w-full object-cover" />
                     <div className="absolute top-2 left-2 bg-white/90 text-loopwear-dark px-2 py-0.5 rounded text-[8px] font-bold">12-18 Nov</div>
-                    <h4 className="text-white font-bold text-[12px] relative z-10 leading-tight">Tukar Lemari</h4>
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    <h4 className="text-white font-bold text-[12px] relative z-10 leading-tight">Tukar Lemari</h4>
                  </div>
                  <div className="flex justify-between items-center mb-3">
                     <div className="flex -space-x-1">
@@ -101,14 +123,15 @@ export default function TantanganKomunitas() {
                     </div>
                     <span className="text-[9px] text-loopwear-muted">84 teman</span>
                  </div>
-                 <button className="w-full bg-[#E8F5E9] text-[#2E6F40] font-bold py-2 rounded-xl text-[10px]">Ikut Misi</button>
+                 <button type="button" onClick={() => toggleChallenge('Tukar Lemari')} className="w-full bg-[#E8F5E9] text-[#2E6F40] font-bold py-2 rounded-xl text-[10px]">{joinedChallenges.includes('Tukar Lemari') ? '✓ Diikuti' : 'Ikut Misi'}</button>
               </div>
 
               <div className="min-w-[160px] bg-white rounded-3xl p-3 shadow-sm border border-loopwear-grey/20">
-                 <div className="h-28 bg-[#6b8c9c] rounded-2xl mb-3 relative flex flex-col justify-end p-2 overflow-hidden">
+                 <div className="h-28 rounded-2xl mb-3 relative flex flex-col justify-end p-2 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=600&q=80" alt="Tekstil dan pakaian untuk didaur ulang" className="absolute inset-0 h-full w-full object-cover" />
                     <div className="absolute top-2 left-2 bg-white/90 text-loopwear-dark px-2 py-0.5 rounded text-[8px] font-bold">1-30 Nov</div>
-                    <h4 className="text-white font-bold text-[12px] relative z-10 leading-tight">Daur 3 Helai</h4>
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    <h4 className="text-white font-bold text-[12px] relative z-10 leading-tight">Daur 3 Helai</h4>
                  </div>
                  <div className="flex justify-between items-center mb-3">
                     <div className="flex -space-x-1">
@@ -118,7 +141,7 @@ export default function TantanganKomunitas() {
                     </div>
                     <span className="text-[9px] text-loopwear-muted">210 teman</span>
                  </div>
-                 <button className="w-full bg-[#E8F5E9] text-[#2E6F40] font-bold py-2 rounded-xl text-[10px]">Ikut Misi</button>
+                 <button type="button" onClick={() => toggleChallenge('Daur 3 Helai')} className="w-full bg-[#E8F5E9] text-[#2E6F40] font-bold py-2 rounded-xl text-[10px]">{joinedChallenges.includes('Daur 3 Helai') ? '✓ Diikuti' : 'Ikut Misi'}</button>
               </div>
            </div>
         </div>

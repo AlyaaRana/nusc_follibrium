@@ -18,10 +18,14 @@ import {
   ArrowRight,
   Circle
 } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import { dummyPakaian } from '../../data/dummyLemari';
 
 const TarifDeposit: React.FC = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const itemId = Number(searchParams.get('id'));
+  const item = dummyPakaian.find((pakaian) => pakaian.id === itemId) ?? dummyPakaian[1];
   
   // State untuk interaktivitas (opsional, agar tombol terlihat hidup)
   const [tarif, setTarif] = useState(95000);
@@ -104,15 +108,15 @@ const TarifDeposit: React.FC = () => {
         {/* Hero Image Card */}
         <div className="relative w-full rounded-[24px] overflow-hidden aspect-[16/9] mb-5 shadow-sm">
           <img 
-            src="https://images.unsplash.com/photo-1598033129183-c4f50c736f10?auto=format&fit=crop&w=600&q=80" 
-            alt="Kebaya Modern Sutra" 
+            src={item.img}
+            alt={item.nama}
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none"></div>
           
           <div className="absolute top-3 left-3 bg-white/95 backdrop-blur px-2.5 py-1.5 rounded-full flex items-center gap-1.5 shadow-sm">
             <div className="w-1.5 h-1.5 rounded-full bg-[#203f35]"></div>
-            <span className="text-[10px] font-bold text-gray-800">Prima</span>
+            <span className="text-[10px] font-bold text-gray-800">{item.mutu}</span>
           </div>
 
           <div className="absolute top-3 right-3 bg-white/95 backdrop-blur px-2.5 py-1.5 rounded-full flex items-center gap-1.5 shadow-sm">
@@ -122,11 +126,11 @@ const TarifDeposit: React.FC = () => {
 
           <div className="absolute bottom-4 left-4 right-4 flex justify-between items-end">
             <div className="flex flex-col">
-              <span className="text-[8px] font-bold text-white/80 uppercase tracking-widest mb-0.5">Kebaya Modern Sutra</span>
-              <h2 className="text-sm font-bold text-white leading-tight">Sage Green Floral Brokat</h2>
+              <span className="text-[8px] font-bold text-white/80 uppercase tracking-widest mb-0.5">{item.kategori}</span>
+              <h2 className="text-sm font-bold text-white leading-tight">{item.nama}</h2>
             </div>
             <div className="bg-white/20 backdrop-blur-md px-2.5 py-1 rounded-md border border-white/30">
-              <span className="text-[10px] font-bold text-white shadow-sm">Size S-M</span>
+              <span className="text-[10px] font-bold text-white shadow-sm">Size {item.ukuran}</span>
             </div>
           </div>
         </div>

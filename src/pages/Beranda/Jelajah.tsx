@@ -48,7 +48,7 @@ export default function Jelajah() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F3EEE3] font-sans pb-10 max-w-md mx-auto">
+    <div className="bg-[#F3EEE3] font-sans max-w-md mx-auto">
       <div className="px-6 pt-5">
         <div className="flex justify-between items-center mb-6">
           <div>

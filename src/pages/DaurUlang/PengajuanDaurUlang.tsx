@@ -11,11 +11,15 @@ import {
   ArrowRight,
   Scan
 } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { dummyPengajuan } from '../../data/dummyDaurUlang';
+import { dummyPakaian } from '../../data/dummyLemari';
 
 const PengajuanDaurUlang: React.FC = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const itemId = Number(searchParams.get('id'));
+  const item = dummyPakaian.find((pakaian) => pakaian.id === itemId);
 
   // Pola ketebalan garis untuk simulasi barcode agar terlihat realistis
   const barcodePattern = [3, 1, 4, 2, 1, 1, 3, 2, 2, 1, 4, 1, 3, 2, 1, 2, 1, 1, 4, 2, 1, 3, 2, 2, 1, 1, 4, 2, 1, 3, 1, 2, 3, 1, 2, 1];
@@ -79,8 +83,8 @@ const PengajuanDaurUlang: React.FC = () => {
         {/* Gambar & Material */}
         <div className="relative w-full rounded-[20px] overflow-hidden bg-gray-200 aspect-[4/3] shadow-sm mb-4">
           <img 
-            src={dummyPengajuan.imageUrl} 
-            alt="Pakaian" 
+            src={item?.img ?? dummyPengajuan.imageUrl}
+            alt={item?.nama ?? 'Pakaian'}
             className="w-full h-full object-cover"
           />
           <div className="absolute top-3 left-3 bg-white/95 backdrop-blur px-2.5 py-1.5 rounded-md flex items-center gap-1.5 shadow-sm">
@@ -96,7 +100,7 @@ const PengajuanDaurUlang: React.FC = () => {
         <div className="bg-[#eaf2ef] rounded-xl p-3 flex justify-between items-center mb-6">
           <div className="flex items-center gap-2 text-[#203f35]">
             <Recycle size={16} />
-            <span className="text-xs text-gray-600">Bahan: <span className="font-bold text-gray-800">{dummyPengajuan.bahan}</span></span>
+            <span className="text-xs text-gray-600">Bahan: <span className="font-bold text-gray-800">{item?.bahan ?? dummyPengajuan.bahan}</span></span>
           </div>
           <button className="bg-white p-1.5 rounded-full shadow-sm"><PenLine size={12} className="text-[#203f35]" /></button>
         </div>

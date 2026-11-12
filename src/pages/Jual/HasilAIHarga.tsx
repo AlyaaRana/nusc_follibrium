@@ -14,10 +14,14 @@ import {
   Info,
   ArrowRight
 } from 'lucide-react';
-import { useNavigate } from 'react-router-dom'; // Jika menggunakan react-router
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import { dummyPakaian } from '../../data/dummyLemari';
 
 const HasilAIHarga: React.FC = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const itemId = Number(searchParams.get('id'));
+  const item = dummyPakaian.find((pakaian) => pakaian.id === itemId) ?? dummyPakaian[0];
 
   return (
     <div className="w-full max-w-md mx-auto min-h-[100dvh] bg-[#FDFBF7] flex flex-col font-sans sm:border-x sm:border-gray-200 shadow-2xl overflow-hidden pb-8">
@@ -76,8 +80,8 @@ const HasilAIHarga: React.FC = () => {
         {/* Image Card AI Lens */}
         <div className="relative w-full rounded-[24px] overflow-hidden bg-gray-200 aspect-[4/4.5] shadow-sm mb-5">
           <img 
-            src="https://images.unsplash.com/photo-1598033129183-c4f50c736f10?auto=format&fit=crop&w=600&q=80"
-            alt="Pakaian Terdeteksi" 
+            src={item.img}
+            alt={item.nama}
             className="w-full h-full object-cover"
           />
           
@@ -116,7 +120,7 @@ const HasilAIHarga: React.FC = () => {
               <Grid size={16} />
             </div>
             <span className="text-[9px] text-gray-500 font-bold mb-0.5 uppercase tracking-wider">Kategori</span>
-            <span className="text-[11px] font-bold text-gray-800 text-center">Kemeja Kasual</span>
+            <span className="text-[11px] font-bold text-gray-800 text-center">{item.kategori}</span>
           </div>
           
           <div className="bg-white rounded-2xl p-3 flex flex-col items-center justify-center shadow-sm">
@@ -124,7 +128,7 @@ const HasilAIHarga: React.FC = () => {
               <Palette size={16} />
             </div>
             <span className="text-[9px] text-gray-500 font-bold mb-0.5 uppercase tracking-wider">Warna</span>
-            <span className="text-[11px] font-bold text-gray-800 text-center">Krem Hangat</span>
+            <span className="text-[11px] font-bold text-gray-800 text-center">{item.warna}</span>
           </div>
 
           <div className="bg-white rounded-2xl p-3 flex flex-col items-center justify-center shadow-sm">
@@ -132,7 +136,7 @@ const HasilAIHarga: React.FC = () => {
               <Leaf size={16} />
             </div>
             <span className="text-[9px] text-gray-500 font-bold mb-0.5 uppercase tracking-wider">Bahan</span>
-            <span className="text-[11px] font-bold text-gray-800 text-center">Katun Linen</span>
+            <span className="text-[11px] font-bold text-gray-800 text-center">{item.bahan}</span>
           </div>
         </div>
 

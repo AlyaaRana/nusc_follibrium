@@ -5,7 +5,7 @@ export default function DasborDampak() {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-[#F3EEE3] font-jakarta pb-32">
+    <div className="bg-[#F3EEE3] font-jakarta pb-6">
       {/* Header & Impact Section */}
       <div className="bg-[#1B4D3E] rounded-b-[40px] px-6 pt-5 pb-20 relative overflow-hidden">
         {/* Background Elements */}
@@ -70,11 +70,33 @@ export default function DasborDampak() {
           </div>
         </div>
         <div className="text-center mt-4">
-          <button className="text-[#C4ECCF] text-[10px] font-bold flex items-center justify-center gap-1 mx-auto bg-white/10 px-3 py-1 rounded-full">
+          <button
+            type="button"
+            onClick={() => navigate('/daur-ulang/cara-menghitung')}
+            className="text-[#C4ECCF] text-[10px] font-bold flex items-center justify-center gap-1 mx-auto bg-white/10 px-3 py-1 rounded-full"
+          >
             ⓘ Lihat sumber kalkulasi
           </button>
         </div>
       </div>
+
+      {/* <button
+        type="button"
+        onClick={() => navigate('/app/komunitas/galeri')}
+        className="mx-6 mb-6 relative h-36 overflow-hidden rounded-3xl text-left shadow-sm"
+      >
+        <img
+          src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1000&q=80"
+          alt="Mahasiswa berbagi inspirasi gaya berkelanjutan"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <span className="absolute inset-0 bg-gradient-to-r from-[#1B4D3E]/90 via-[#1B4D3E]/45 to-transparent" />
+        <span className="relative flex h-full max-w-[75%] flex-col justify-center p-5 text-white">
+          <span className="text-[10px] font-bold uppercase tracking-widest text-[#C4ECCF]">Cerita komunitas</span>
+          <span className="mt-1 text-lg font-extrabold leading-tight">Gaya baik, dampak nyata.</span>
+          <span className="mt-2 text-[11px] font-semibold">Lihat inspirasi teman kampus →</span>
+        </span>
+      </button> */}
 
       {/* Main Action Cards */}
       <div className="px-6 -mt-10 relative z-20 flex gap-3 mb-6">
@@ -143,14 +165,6 @@ export default function DasborDampak() {
         </div>
       </div>
 
-      {/* Share Button Overlay */}
-      <div className="fixed bottom-28 left-6 right-6 z-40">
-        <button className="w-full bg-[#D9714B] text-white font-bold py-3.5 rounded-full shadow-[0_8px_20px_rgba(217,113,75,0.3)] flex justify-center items-center gap-2 text-[14px]">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
-          Bagikan Cerita Dampak ke Komunitas ✨
-        </button>
-        <p className="text-center text-[9px] text-loopwear-muted mt-2">Setiap cerita menginspirasi gerakan lemari sirkular lainnya.</p>
-      </div>
     </div>
   );
 }

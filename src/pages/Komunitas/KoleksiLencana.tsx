@@ -5,7 +5,7 @@ export default function KoleksiLencana() {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-[#F3EEE3] font-jakarta pb-24">
+    <div className="bg-[#F3EEE3] font-jakarta pb-6">
       {/* Header */}
       <div className="pt-5 px-6 pb-4 flex items-center gap-3">
         <button onClick={() => navigate(-1)} className="text-[#1B4D3E]"><ArrowLeft size={24} /></button>
@@ -15,6 +15,15 @@ export default function KoleksiLencana() {
       <div className="px-6 space-y-6">
         {/* Next Badge Card */}
         <div className="bg-white rounded-3xl p-5 shadow-sm border border-loopwear-grey/20">
+          <div className="relative h-28 overflow-hidden rounded-2xl mb-4">
+            <img
+              src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80"
+              alt="Pakaian yang siap didaur ulang"
+              className="h-full w-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#1B4D3E]/80 to-transparent" />
+            <span className="absolute bottom-3 left-4 text-white text-sm font-extrabold">Kumpulkan aksi baikmu</span>
+          </div>
           <div className="flex justify-between items-center mb-4">
             <span className="text-[#D9714B] text-[10px] font-bold flex items-center gap-1">
               📈 LENCANA BERIKUTNYA
@@ -112,6 +121,39 @@ export default function KoleksiLencana() {
                 <h4 className="font-bold text-[12px] text-loopwear-muted">Pahlawan Sirkular</h4>
                 <p className="text-[9px] text-loopwear-muted mt-1">Hemat 50kg karbon lemari</p>
              </div>
+
+             {[
+               { name: 'Penjaga Gaya', detail: 'Bagikan 5 inspirasi OOTD', icon: '👗', unlocked: true },
+               { name: 'Kolektor Poin', detail: 'Kumpulkan 500 poin', icon: '⭐', unlocked: true },
+               { name: 'Sahabat Bumi', detail: 'Ikuti 3 tantangan', icon: '🌱', unlocked: true },
+               { name: 'Pemburu Harta', detail: 'Temukan 10 preloved', icon: '🔎' },
+               { name: 'Penyebar Kebaikan', detail: 'Ajak 3 teman bergabung', icon: '🤝' },
+               { name: 'Penjaga Serat', detail: 'Daur ulang 5 pakaian', icon: '🧵' },
+               { name: 'Gaya Berputar', detail: 'Sirkulasikan 10 pakaian', icon: '🔄' },
+               { name: 'Kampus Lestari', detail: 'Hemat 20 kg CO₂e', icon: '🌿' },
+               { name: 'Kreator Cerita', detail: 'Bagikan 3 cerita', icon: '📖' },
+               { name: 'Pembeli Bijak', detail: 'Pilih preloved 5 kali', icon: '🛍️' },
+               { name: 'Peminjam Setia', detail: 'Sewa 3 pakaian', icon: '🧥' },
+               { name: 'Bintang Komunitas', detail: 'Dapatkan 50 suka', icon: '💚' },
+             ].map((badge) => (
+               <div
+                 key={badge.name}
+                 className={`rounded-3xl p-4 flex flex-col items-center text-center border ${
+                   badge.unlocked
+                     ? 'bg-white border-[#2E6F40]/20'
+                     : 'bg-[#F3EEE3] border-loopwear-grey/20 opacity-70'
+                 }`}
+               >
+                 <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-2xl mb-3 ${badge.unlocked ? 'bg-[#E8F5E9]' : 'bg-[#e4d8c6]'}`}>
+                   {badge.icon}
+                 </div>
+                 <span className={`px-2 py-0.5 rounded text-[8px] font-bold mb-1.5 ${badge.unlocked ? 'text-[#2E6F40] bg-[#C4ECCF]/50' : 'text-loopwear-muted bg-white'}`}>
+                   {badge.unlocked ? 'Terbuka' : 'Terkunci'}
+                 </span>
+                 <h4 className={`font-bold text-[12px] ${badge.unlocked ? 'text-loopwear-dark' : 'text-loopwear-muted'}`}>{badge.name}</h4>
+                 <p className="text-[9px] text-loopwear-muted mt-1">{badge.detail}</p>
+               </div>
+             ))}
           </div>
         </div>
 
@@ -126,10 +168,10 @@ export default function KoleksiLencana() {
 
         {/* Action Buttons */}
         <div className="space-y-3 pt-2">
-          <button className="w-full bg-[#D9714B] text-white font-bold py-3.5 rounded-full shadow-lg flex justify-center items-center gap-2 text-[13px]">
+          <button type="button" onClick={() => navigate('/app/komunitas/tantangan')} className="w-full bg-[#D9714B] text-white font-bold py-3.5 rounded-full shadow-lg flex justify-center items-center gap-2 text-[13px]">
             🎁 Lihat Panduan Poin & Hadiah
           </button>
-          <button className="w-full bg-white text-loopwear-dark font-bold py-3.5 rounded-full border border-loopwear-grey/30 flex justify-center items-center gap-2 text-[13px]">
+          <button type="button" onClick={() => navigate('/app/komunitas/galeri')} className="w-full bg-white text-loopwear-dark font-bold py-3.5 rounded-full border border-loopwear-grey/30 flex justify-center items-center gap-2 text-[13px]">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
             Bagikan Lemari Prestasi
           </button>

@@ -21,7 +21,7 @@ export default function LemariList() {
   });
 
   return (
-    <div className="min-h-screen bg-[#F3EEE3] flex flex-col font-jakarta pb-24">
+    <div className="bg-[#F3EEE3] flex flex-col font-jakarta">
       {/* Top Header Bar dengan Tombol (+) Lingkaran Putih */}
       <div className="pt-6 px-6 pb-4 flex justify-between items-start">
         <div>

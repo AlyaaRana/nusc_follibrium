@@ -45,8 +45,7 @@ export function BerandaUser() {
   };
 
   return (
-    // Menghapus shadow-xl agar tidak ada bayangan kotak yang janggal di pinggir/bawah layar
-    // Menambahkan pb-6 sebagai padding bottom tanpa space untuk bottom nav
+    
     <div className="min-h-screen bg-[#F3EEE3] font-sans pb-6 max-w-md mx-auto relative overflow-hidden">
       <div className="px-6 pt-5 pb-4">
         {/* Header Profil */}
